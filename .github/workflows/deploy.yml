@@ -6,7 +6,7 @@ on:
 
 jobs:
   deploy_blog:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
 
     steps:
       - name: Checkout repository
@@ -16,6 +16,11 @@ jobs:
         run: |
           wget -O ${{ runner.temp }}/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${{ vars.HUGO_VERSION }}/hugo_extended_${{ vars.HUGO_VERSION }}_linux-amd64.deb \
           && sudo dpkg -i ${{ runner.temp }}/hugo.deb
+
+      - name: Install rsync
+        run: |
+          apt update && \
+          apt install -y rsync
 
       - name: Build with Hugo
         env:
