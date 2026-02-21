@@ -33,7 +33,7 @@ jobs:
       - name: Deploy blog on host
         run: |
           rsync -avz \
-          -e "ssh -p {{ secrets.SSH_PORT }} \
+          -e "ssh -p ${{ secrets.SSH_PORT }} \
                   -i ${{ runner.temp }}/blog_key \
                   -o UserKnownHostsFile=${{ runner.temp }}/known_hosts" \
           ${{ runner.temp }}/hugo_cache \
