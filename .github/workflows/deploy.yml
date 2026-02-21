@@ -6,7 +6,7 @@ on:
 
 jobs:
   ssh-test:
-    runs-on: alpine:latest
+    runs-on: ubuntu-slim
 
     steps:
       - name: Checkout repository
