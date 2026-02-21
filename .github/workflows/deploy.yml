@@ -1,0 +1,25 @@
+name: Deploy blog
+
+on:
+  push:
+
+jobs:
+  ssh-test:
+    runs-on: alpine:latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/blog_key
+          chmod 600 ~/.ssh/blog_key
+          echo "${{ secrets.SERVER_PUBLIC_KEY }}" > ~/.ssh/known_hosts
+
+      - name: Run echo on remote host
+        run: |
+          ssh -p ${{ secrets.SSH_PORT }} \
+              ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
+              "echo 'TEST CONNECTION'"
