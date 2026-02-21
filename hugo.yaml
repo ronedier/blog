@@ -1,0 +1,4 @@
+baseurl: "https://nik-avg.org/"
+languagecode: "en-us"
+title: "Nik's blog"
+theme: "hugo-xmin"
