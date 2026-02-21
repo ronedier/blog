@@ -26,9 +26,8 @@ jobs:
 
       - name: Setup SSH key
         run: |
-          mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ${{ runner.temp }}/blog_key
-          chmod 600 ~/.ssh/blog_key
+          chmod 600 ${{ runner.temp }}/blog_key
           echo "${{ secrets.SERVER_PUBLIC_KEY }}" > ${{ runner.temp }}/known_hosts
 
       - name: Deploy blog on host
