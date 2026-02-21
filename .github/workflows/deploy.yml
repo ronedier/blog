@@ -19,8 +19,8 @@ jobs:
 
       - name: Install rsync
         run: |
-          apt update && \
-          apt install -y rsync
+          apt-get update
+          apt-get install -y rsync
 
       - name: Build with Hugo
         env:
