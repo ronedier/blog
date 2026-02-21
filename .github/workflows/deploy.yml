@@ -21,6 +21,6 @@ jobs:
 
       - name: Run echo on remote host
         run: |
-          ssh -p ${{ secrets.SSH_PORT }} \
+          ssh -i ~/.ssh/blog_key -p ${{ secrets.SSH_PORT }} \
               ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
               "echo 'TEST CONNECTION'"
