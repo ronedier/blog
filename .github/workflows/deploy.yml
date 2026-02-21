@@ -2,6 +2,7 @@ name: Deploy blog
 
 on:
   push:
+  workflow_dispatch:
 
 jobs:
   ssh-test:
