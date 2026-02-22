@@ -19,7 +19,6 @@ jobs:
 
       - name: Build with Hugo
         env:
-          HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
           HUGO_ENVIRONMENT: production
         run: |
           hugo --minify
@@ -32,9 +31,9 @@ jobs:
 
       - name: Deploy blog on host
         run: |
-          rsync -avz \
+          rsync -avz --delete \
           -e "ssh -p ${{ secrets.SSH_PORT }} \
                   -i ${{ runner.temp }}/blog_key \
                   -o UserKnownHostsFile=${{ runner.temp }}/known_hosts" \
-          ${{ runner.temp }}/hugo_cache/ \
+          public/ \
           ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/blog
